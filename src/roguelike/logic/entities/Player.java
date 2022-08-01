@@ -23,24 +23,20 @@ public class Player extends EntityTile {
 	
 	public Player(String name, int posX, int posY) {
 		super(name, posX, posY, 20);
-		this.inventory = new Item[INVENTORY_SIZE];
-		this.inventoryOpen = false;
-		this.weaponEquipped = Items.SHORT_SWORD;
-		this.armorEquipped = Items.LIGHT_ARMOR;
-		this.strength = 1;
-		this.defence = 0;
-		this.gold = 0;
-		this.floors = 0;
-		this.strengthBuff = 0;
-		this.defenceBuff = 0;
+		inventory = new Item[INVENTORY_SIZE];
+		inventoryOpen = false;
+		weaponEquipped = Items.SHORT_SWORD;
+		armorEquipped = Items.LIGHT_ARMOR;
+		strength = 1;
+		defence = gold = floors = strengthBuff = defenceBuff = 0;
 	}
 	
 	@Override
 	public void setPosition(int dirX, int dirY, boolean animated) {
 		super.setPosition(dirX, dirY, animated);
 		if(animated) {
-			this.strengthBuff--;
-			this.defenceBuff--;
+			strengthBuff--;
+			defenceBuff--;
 		}
 	}
 	
@@ -86,7 +82,7 @@ public class Player extends EntityTile {
 	}
 	
 	public void giveGold(int amount) {
-		this.gold += amount;
+		gold += amount;
 	}
 	
 	public int getGold() {
@@ -94,11 +90,11 @@ public class Player extends EntityTile {
 	}
 	
 	public void addFloorCleared() {
-		this.floors++;
+		floors++;
 	}
 	
 	public void subtractFloorCleared() {
-		this.floors--;
+		floors--;
 	}
 	
 	public int getFloorsCleared() {
@@ -117,8 +113,8 @@ public class Player extends EntityTile {
 	@Override
 	public int getStrength() {
 		int str = super.getStrength();
-		if(this.weaponEquipped != null) str += this.weaponEquipped.getDamage();
-		return this.strengthBuff > 0 ? str + 5 : str;
+		if(weaponEquipped != null) str += weaponEquipped.getDamage();
+		return strengthBuff > 0 ? str + 5 : str;
 	}
 	
 	public void addDefenceBuff() {
@@ -128,50 +124,44 @@ public class Player extends EntityTile {
 	@Override
 	public int getDefence() {
 		int def = super.getDefence();
-		if(this.armorEquipped != null) def += this.armorEquipped.getDefence();
-		return this.defenceBuff > 0 ? def + 5 : def;
+		if(armorEquipped != null) def += armorEquipped.getDefence();
+		return defenceBuff > 0 ? def + 5 : def;
 	}
 	
 	public void equipWeapon(Weapon weapon) {
-		this.weaponEquipped = new Weapon(weapon.getName(), weapon.getDisplayName(), weapon.getDamage(), weapon.getTotalDcy());
+		weaponEquipped = new Weapon(weapon.getName(), weapon.getDisplayName(), weapon.getDamage(), weapon.getTotalDcy());
 	}
 	
 	public void equipArmor(Armor armor) {
-		this.armorEquipped = new Armor(armor.getName(), armor.getDisplayName(), armor.getDefence(), armor.getTotalDcy());
+		armorEquipped = new Armor(armor.getName(), armor.getDisplayName(), armor.getDefence(), armor.getTotalDcy());
 	}
 
 	public Weapon getWeapon() {
-		return this.weaponEquipped;
+		return weaponEquipped;
 	}
 
 	public Armor getArmor() {
-		return this.armorEquipped;
+		return armorEquipped;
 	}
 
 	public boolean damageArmor() {
-		if(this.armorEquipped == null) {
-			return false;
-		}
-		else { 
-			this.armorEquipped.reduceDcy();
-		}
-		if(this.armorEquipped.getDcy() <= 0) {
-			this.armorEquipped = null;
-			return true;
+		if (armorEquipped != null) {
+			armorEquipped.reduceDcy();
+			if (armorEquipped.getDcy() <= 0) {
+				armorEquipped = null;
+				return true;
+			}
 		}
 		return false;
 	}
 	
 	public boolean damageWeapon() {
-		if(this.weaponEquipped == null) {
-			return false;
-		}
-		else { 
-			this.weaponEquipped.reduceDcy();
-		}
-		if(this.weaponEquipped.getDcy() <= 0) {
-			this.weaponEquipped = null;
-			return true;
+		if (weaponEquipped != null) {
+			weaponEquipped.reduceDcy();
+			if (weaponEquipped.getDcy() <= 0) {
+				weaponEquipped = null;
+				return true;
+			}
 		}
 		return false;
 	}
