@@ -7,9 +7,9 @@ public class Monster extends EntityTile {
 	
 	public Monster(Type type, int posX, int posY) {
 		super(type.getName(), posX, posY, type.getHp());
-		this.strength = type.getStr();
-		this.defence = type.getDef();
-		this.type = type;
+		strength = type.getStr();
+		defence = type.getDef();
+		type = type;
 		this.chasePlayer = type.getChase();
 	}
 	
