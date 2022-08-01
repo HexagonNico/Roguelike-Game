@@ -16,10 +16,10 @@ public class Tile {
 	 */
 	public Tile(String name, int posX, int posY) {
 		this.name = name;
-		this.worldPosX = posX;
-		this.worldPosY = posY;
+		worldPosX = posX;
+		worldPosY = posY;
 		
-		if(name == "red_potion" || name == "gold_bag" || name == "key" || name == "purple_potion" || name == "lime_potion" || name == "green_potion" || name == "yellow_potion" || name == "chest")
+		if(name.equals("red_potion") || name.equals("gold_bag") || name.equals("key") || name.equals("purple_potion") || name.equals("lime_potion") || name.equals("green_potion") || name.equals("yellow_potion") || name.equals("chest"))
 			this.collectible = true;
 	}
 	
