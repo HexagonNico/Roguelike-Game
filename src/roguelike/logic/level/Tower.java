@@ -15,11 +15,10 @@ public class Tower {
 	 * @param randomizer - Used to shuffle the tower
 	 */
 	public Tower(Random randomizer) {
-		this.floors = new ArrayList<Floor>();
+		floors = new ArrayList<>();
 		List<Floor> temporaryTower = new ArrayList<>();
-		this.floorAt = 0;
-		
-		this.floors.add(Levels.BASE_LEVEL);
+		floorAt = 0;
+		floors.add(Levels.BASE_LEVEL);
 		temporaryTower.add(Levels.LEVEL_1);
 		temporaryTower.add(Levels.LEVEL_2);
 		temporaryTower.add(Levels.LEVEL_3);
@@ -56,10 +55,8 @@ public class Tower {
 	/**Gets the level above the current one*/
 	public Floor getNextFloor() {
 		floorAt++;
-		
 		if(floorAt == floors.size())
 			floorAt--;
-		
 		return floors.get(floorAt);
 	}
 	
@@ -67,7 +64,6 @@ public class Tower {
 	public Floor getPreviousFloor() {
 		if(floorAt != 0)
 			floorAt--;
-		
 		return floors.get(floorAt);
 	}
 }
