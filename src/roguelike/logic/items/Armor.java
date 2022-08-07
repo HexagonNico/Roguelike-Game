@@ -26,7 +26,7 @@ public class Armor extends Item {
 	}
 	
 	public void reduceDcy() {
-		this.dcy--;
-		this.description = "DMG: "+defence+" DCY: "+dcy+"/"+totalDcy;
+		dcy--;
+		description = "DMG: "+defence+" DCY: "+dcy+"/"+totalDcy;
 	}
 }
