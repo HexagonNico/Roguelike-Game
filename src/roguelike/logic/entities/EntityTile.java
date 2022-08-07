@@ -17,9 +17,9 @@ public class EntityTile extends Tile {
 	
 	public EntityTile(String name, int posX, int posY, int health) {
 		super(name, posX, posY);
-		this.facing = Direction.LEFT;
-		this.maxHealth = health;
-		this.health = health;
+		facing = Direction.LEFT;
+		maxHealth = health;
+		health = health;
 	}
 	
 	public void setPosition(int dirX, int dirY, boolean animated) {
@@ -30,8 +30,8 @@ public class EntityTile extends Tile {
 			else if(dirY < worldPosY) motionOffsetY = -32;
 		}
 		
-		this.worldPosX = dirX;
-		this.worldPosY = dirY;
+		worldPosX = dirX;
+		worldPosY = dirY;
 	}
 	
 	public Direction getFacing() {
@@ -39,7 +39,7 @@ public class EntityTile extends Tile {
 	}
 	
 	public void setFacing(Direction facing) {
-		this.facing = facing;
+		facing = facing;
 	}
 	
 	public int getHealth() {
@@ -51,9 +51,9 @@ public class EntityTile extends Tile {
 	}
 	
 	public void heal(int amount) {
-		this.health += amount;
+		health += amount;
 		if(health>maxHealth)
-			this.health = this.maxHealth;
+			health = maxHealth;
 	}
 	
 	public void damage(int amount) {
